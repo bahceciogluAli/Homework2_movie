@@ -3,9 +3,11 @@ package dev.patika.movie.service;
 
 import dev.patika.movie.dao.MovieDao;
 import dev.patika.movie.entity.Movie;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Data
 @Service
 public class MovieService implements BaseService<Movie>{
 
@@ -17,22 +19,23 @@ public class MovieService implements BaseService<Movie>{
     }
 
     @Override
-    public Movie findById(String id) {
-        return movieDao.findById(id);
+    public Movie findById(Long id) {
+        return  movieDao.findById(id).get();
     }
 
     @Override
     public Movie save(Movie object) {
-        return (Movie) movieDao.save(object);
+        return movieDao.save(object);
     }
 
     @Override
-    public void deleteById(int id) {
+    public String deleteById(Long id) {
         movieDao.deleteById(id);
+        return id+"silindi";
     }
 
     @Override
     public Movie update(Movie object) {
-        return (Movie) movieDao.update(object);
+        return  movieDao.save(object);
     }
 }

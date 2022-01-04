@@ -2,25 +2,25 @@ package dev.patika.movie.entity;
 import dev.patika.movie.entity.enumaration.Genre;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "movies")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String moviName;
+    private Long id;
+    private String movieName;
     private Genre genre;
     private Date releaseYear;
     private String director;
-    private List<String> cast;
+  //  @ManyToOne(mappedBy="cast")
+   // private List<String> cast;
 
 
 }
