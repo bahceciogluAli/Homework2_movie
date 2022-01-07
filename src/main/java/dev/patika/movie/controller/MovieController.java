@@ -1,6 +1,9 @@
 package dev.patika.movie.controller;
 
+import dev.patika.movie.entity.Cast;
 import dev.patika.movie.entity.Movie;
+import dev.patika.movie.entity.Puan;
+import dev.patika.movie.entity.User;
 import dev.patika.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 
@@ -10,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,6 +24,27 @@ public class MovieController {
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movie>> findAll(){
+        /* Bir oyuncu olacak, oynadığı filmlerin listesi*/
+
+        Cast.builder()
+                .name("Sezgin")
+                .telNo("5555")
+                .movie(Movie.builder().movieName("Agesa").build()).build();
+
+        User user = User.builder().build();
+        Movie movie = Movie.builder().build();
+
+        List<Puan> puanList = new ArrayList<>();
+
+        puanList.add(Puan.builder()
+                .point(5L)
+                .movie(movie)
+                .build());
+
+        user.setOylamalarList(puanList);
+
+        User.builder().id(1L).oylamalarList(puanList);
+
 
         return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
     }

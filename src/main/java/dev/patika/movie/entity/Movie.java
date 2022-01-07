@@ -1,10 +1,8 @@
 package dev.patika.movie.entity;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.patika.movie.entity.enumaration.Genre;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +22,8 @@ public class Movie {
     private String director;
    @OneToMany(mappedBy = "movie")
     private List<Cast> cast;
+   @OneToMany
+    List<Puan> oylamalarList;
 
 
 }
