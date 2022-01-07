@@ -18,7 +18,7 @@ public class Movie {
     private Long id;
     private String movieName;
     private Genre genre;
-    private Date releaseYear;
+    private String releaseYear;
     private String director;
    @OneToMany(mappedBy = "movie")
     private List<Cast> cast;

@@ -4,6 +4,7 @@ import dev.patika.movie.entity.Cast;
 import dev.patika.movie.entity.Movie;
 import dev.patika.movie.entity.Puan;
 import dev.patika.movie.entity.User;
+import dev.patika.movie.entity.enumaration.Genre;
 import dev.patika.movie.service.MovieService;
 import lombok.AllArgsConstructor;
 
@@ -27,12 +28,14 @@ public class MovieController {
         /* Bir oyuncu olacak, oynadığı filmlerin listesi*/
 
         Cast.builder()
-                .name("Sezgin")
+                .name("Ali")
                 .telNo("5555")
-                .movie(Movie.builder().movieName("Agesa").build()).build();
+                .movie(Movie.builder().movieName("LookUP").genre(Genre.Action).releaseYear("2021").director("Roberto").build()).build();
 
-        User user = User.builder().build();
-        Movie movie = Movie.builder().build();
+
+        User user = User.builder().userName("abah").build();
+        Movie movie =Movie.builder().movieName("Look").genre(Genre.Action).releaseYear("2022").director("Rober").build();
+        Movie movie2 =Movie.builder().movieName("HIMYM").genre(Genre.Comedy).releaseYear("2012").director("William").build();
 
         List<Puan> puanList = new ArrayList<>();
 
@@ -40,7 +43,10 @@ public class MovieController {
                 .point(5L)
                 .movie(movie)
                 .build());
-
+        puanList.add(Puan.builder()
+                .point(5L)
+                .movie(movie2)
+                .build());
         user.setOylamalarList(puanList);
 
         User.builder().id(1L).oylamalarList(puanList);
