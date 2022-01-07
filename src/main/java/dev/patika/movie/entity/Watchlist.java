@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,10 +17,10 @@ public class Watchlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long watchListid;
-
-    @ManyToOne
-    User memberid;
     private String watchListName;
     @ManyToOne
-    Movie movieid;
+    User user;
+
+    @ManyToMany
+    List<Movie> movielist;
 }

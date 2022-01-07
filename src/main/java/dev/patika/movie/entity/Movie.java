@@ -24,6 +24,8 @@ public class Movie {
     private List<Cast> cast;
    @OneToMany
     List<Puan> oylamalarList;
+    @ManyToMany
+    List<Watchlist> watchlist;
 
 
 }

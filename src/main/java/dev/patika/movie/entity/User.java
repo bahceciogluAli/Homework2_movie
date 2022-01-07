@@ -21,4 +21,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     List<Puan> oylamalarList;
+
+    @OneToMany(mappedBy = "user")
+    List<Watchlist> watchlists;
+
 }
