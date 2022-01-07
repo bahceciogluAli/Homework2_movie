@@ -25,68 +25,22 @@ public class MovieController {
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movie>> findAll(){
-        /* Bir oyuncu olacak, oynadığı filmlerin listesi*/
 
-        Cast.builder()
-                .name("Ali")
-                .telNo("5555")
-                .movie(Movie.builder().movieName("LookUP").genre(Genre.Action).releaseYear("2021").director("Roberto").build()).build();
-
-
-        User user = User.builder().userName("abah").build();
         Movie movie =Movie.builder().movieName("Look").genre(Genre.Action).releaseYear("2022").director("Rober").build();
         Movie movie2 =Movie.builder().movieName("HIMYM").genre(Genre.Comedy).releaseYear("2012").director("William").build();
+        List<Movie> list=new ArrayList<>();
+        list.add(movie);
+        list.add(movie2);
 
-        List<Puan> puanList = new ArrayList<>();
-
-        puanList.add(Puan.builder()
-                .point(5L)
-                .movie(movie)
-                .build());
-        puanList.add(Puan.builder()
-                .point(5L)
-                .movie(movie2)
-                .build());
-        user.setOylamalarList(puanList);
-
-        User.builder().id(1L).oylamalarList(puanList);
-
-
-        return new ResponseEntity<>(movieService.findAll(), HttpStatus.OK);
-    }
-/*
-    @GetMapping
-    public List<Course> getAll(){
-        List<Course> list = new ArrayList<>();
-
-        list.add(Course.builder().build());
-        list.add(Course.builder().build());
-        list.add(Course.builder().build());
-        list.add(Course.builder().build());
-
-        return list;
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @PostMapping
-    public Course save(){
-        return Course.builder().code("").name("").build();
-    }
-*/
-/*
-Course.builder()
-        .name("Java Programlama")
-                .code("BM345")
-                .creditScore(1)
-                .instructor((Instructor) this.instructorDao.save(VisitingResearcher.VisitingResearcherBuilder()
-            .fullName("Koray Güney")
-                        .address("İstanbul")
-                        .phoneNumber("+905554443322")
-                        .hourlySalary(200.0).build())).build());
-
-*/
     @PostMapping("/movies")
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie){
-        return new ResponseEntity<>(movieService.save(movie),HttpStatus.CREATED);
+
+        Movie moviedmmy =Movie.builder().movieName(movie.getMovieName()).genre(movie.getGenre()).releaseYear(movie.getReleaseYear()).director(movie.getDirector()).build();
+
+        return new ResponseEntity<>(moviedmmy,HttpStatus.CREATED);
     }
 
     @DeleteMapping("/movies/{id}")

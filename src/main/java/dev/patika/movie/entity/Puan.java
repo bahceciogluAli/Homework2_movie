@@ -19,11 +19,11 @@ public class Puan {
     private Long point;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "member_id", referencedColumnName = "memberid")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
+    @JoinColumn(name = "movie_id", referencedColumnName = "movieid")
     private Movie movie;
 
 }
